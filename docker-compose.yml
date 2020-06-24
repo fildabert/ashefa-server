@@ -2,15 +2,12 @@
 
 app:
   build: ./
-  links:
-    - redis
   volumes:
     - ./:/usr/src/app
   ports:
     - 3030:3000
   environment:
     - PORT=3000
-    - REDIS_URL=redis://cache
   command:
     sh -c 'node app.js'
   restart: unless-stopped
