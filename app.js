@@ -3,6 +3,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 // require('newrelic');
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cluster = require('cluster');
@@ -16,9 +17,8 @@ const port = process.env.PORT || 3000;
 const cors = require('cors');
 const routes = require('./routes/index');
 
-require('dotenv').config();
 
-const atlasURL = 'mongodb+srv://ashefagriyapusaka:margasatw@46@cluster0-g5t55.mongodb.net/ashefa?retryWrites=true&w=majority';
+const atlasURL = process.env.ATLAS_URL;
 const mongodbLocal = 'mongodb://127.0.0.1:27017/curly-lamp';
 
 mongoose.connect(atlasURL, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });

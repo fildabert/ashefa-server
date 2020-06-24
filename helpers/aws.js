@@ -3,8 +3,8 @@ const AWS = require('aws-sdk');
 const fs = require('fs');
 const streamifier = require('streamifier');
 
-const AWSAccessKeyId = 'AKIAIN2VWM2X62BEBURQ';
-const AWSSecretKey = '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';
+const AWSAccessKeyId = process.env.ACCESS_KEY;
+const AWSSecretKey = process.env.SECRET_KEY;
 
 const BUCKET_NAME = 'ashefa-bucket';
 
@@ -28,6 +28,7 @@ const uploadFile = (fileName) => new Promise((resolve, reject) => {
 
   s3.upload(params, (err, data) => {
     if (err) {
+      console.log(err);
       reject(err);
     }
     console.log(`File uploaded successfully. ${data.Location}`);
