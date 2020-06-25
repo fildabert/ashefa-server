@@ -54,7 +54,7 @@ module.exports = {
   }),
   getRecentActivities: (location) => new Promise(async (resolve, reject) => {
     try {
-      const sessions = await Session.find({ active: true, location }).populate('clients').populate('counselors').sort({ createdAt: 'desc' })
+      const sessions = await Session.find({ active: true, location }).populate('clients').populate('counselors').sort({ updatedAt: 'desc' })
         .limit(8);
       resolve(sessions);
     } catch (error) {
