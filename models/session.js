@@ -37,7 +37,7 @@ const sessionSchema = new mongoose.Schema({
   },
   location: {
     type: String,
-    enum: ['Margasatwa'],
+    enum: ['Margasatwa', 'Antasari'],
   },
 
 }, { timestamps: true });
