@@ -25,7 +25,7 @@ const sessionSchema = new mongoose.Schema({
   type: {
     type: String,
     required: [true, 'type is required'],
-    enum: ['Cleaning Activity', 'Psychodeducation', 'Sports Activity', 'Others', 'Morning Briefing',],
+    enum: ['Cleaning Activity', 'Psychodeducation', 'Sports Activity', 'Others', 'Morning Briefing', 'Group Activity', 'Edutainment', 'Wrap Up'],
   },
   report: {
     type: String,
