@@ -52,7 +52,7 @@ module.exports = {
   getClients: () => new Promise(async (resolve, reject) => {
     // TODO: ONLY GET ACTIVE CLIENTS
     try {
-      const activeClients = await User.find({ userType: 'Client' });
+      const activeClients = await User.find({ userType: 'Client', active: true });
 
       activeClients.forEach((client) => {
         delete client.password;
@@ -65,7 +65,7 @@ module.exports = {
   getActiveCounselors: () => new Promise(async (resolve, reject) => {
     // TODO: ONLY GET ACTIVE CLIENTS
     try {
-      const getActiveCounselors = await User.find({ userType: 'Counselor' });
+      const getActiveCounselors = await User.find({ userType: 'Counselor', active: true });
 
       getActiveCounselors.forEach((counselor) => {
         delete counselor.password;
