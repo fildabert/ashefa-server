@@ -38,7 +38,7 @@ module.exports = {
       session.pictures = pictures || session.pictures;
       session.time = time || session.time;
 
-      if (session.isModified()) {
+      if (session.isModified() && !session.isModified('pictures')) {
         session.__v += 1;
       }
 

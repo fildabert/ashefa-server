@@ -26,7 +26,7 @@ const createSession = async (req, res, next) => {
       const promises = [];
 
       req.files.forEach((file) => {
-        promises.push(uploadImage(file));
+        promises.push(uploadImage(file, req.body));
       });
 
       const result = await Promise.all(promises);
@@ -72,7 +72,7 @@ const editSession = async (req, res, next) => {
       const promises = [];
 
       req.files.forEach((file) => {
-        promises.push(uploadImage(file));
+        promises.push(uploadImage(file, req.body));
       });
 
       const result = await Promise.all(promises);
