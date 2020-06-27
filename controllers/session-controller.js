@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-async-promise-executor */
 /* eslint-disable linebreak-style */
 const moment = require('moment');
@@ -36,6 +37,10 @@ module.exports = {
       session.report = report || session.report;
       session.pictures = pictures || session.pictures;
       session.time = time || session.time;
+
+      if (session.isModified()) {
+        session.__v += 1;
+      }
 
       const result = await session.save();
 
