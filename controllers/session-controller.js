@@ -38,7 +38,7 @@ module.exports = {
       session.pictures = pictures || session.pictures;
       session.time = time || session.time;
 
-      if (session.isModified() && !session.isModified('pictures')) {
+      if (session.isModified() && !session.isModified('pictures') && !session.isModified('clients') && !session.isModified('counselors')) {
         session.__v += 1;
       }
 
@@ -76,6 +76,18 @@ module.exports = {
 
       await session.remove();
       resolve({ success: true });
+    } catch (error) {
+      reject(error);
+    }
+  }),
+  getUserSessions: (_id, pageNumber) => new Promise(async (resolve, reject) => {
+    try {
+      const amount = 10;
+      const sessions = await Session.find({ $or: [{ counselors: { $in: [_id] } }, { clients: { $in: [_id] } }] })
+        .populate('counselors').populate('clients').sort({ time: 'desc' })
+        .skip((pageNumber * amount) - amount)
+        .limit(amount);
+      resolve(sessions);
     } catch (error) {
       reject(error);
     }

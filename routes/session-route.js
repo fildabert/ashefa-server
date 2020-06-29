@@ -100,10 +100,20 @@ const deleteSession = async (req, res, next) => {
   }
 };
 
+const getUserSessions = async (req, res, next) => {
+  try {
+    const result = await sessionController.getUserSessions(req.params._id, req.params.page);
+    res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
 router.post('/create', multer.array('files', 5), createSession);
 router.put('/edit/:_id', multer.array('files', 5), editSession);
 router.post('/delete/:_id', deleteSession);
 router.get('/recent/:location', getRecentActivities);
 router.get('/getbydate/:date/:location', getSessionsByDate);
+router.get('/user/:_id/:page', getUserSessions);
 
 module.exports = router;
